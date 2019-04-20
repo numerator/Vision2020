@@ -102,7 +102,7 @@ def findObjectContours(dilate, objName):
                 sorted(interesting_contours, key=lambda contour: abs(getCenterPoint(getContourBoundary(contour))[0] - frame_width/2))
                 contour_boundaries = [getContourBoundary(interesting_contours[0]), getContourBoundary(interesting_contours[1])]
                 # TODO: Add code to threshold area of contours
-                print("Interesting contours type:", type(interesting_contours))
+                # print("Interesting contours type:", type(interesting_contours))
             if sendPackets:
                 prepareForRoboRIO(contour_boundaries, objName)
             else:
@@ -116,7 +116,7 @@ def getAngle(point):
     field_of_view = 65
     pixel_distance = point - frame_width/2
     heading = ((field_of_view/2.0) * pixel_distance)/(frame_width/2)
-    print("Heading:", heading)
+    print("-"*int(heading+24) + " * " + "-"*int(24-heading))
     return int(heading)
 
 def sendData(status, angle, width, objName):
@@ -262,7 +262,6 @@ if __name__ == "__main__":
         counter+=1
         ranOnce = True
         print("Time:", time.time()-time0)
-        time.sleep(0.058)
 
 # Release the video capture and close the windows when q is pressed
 video_capture.release()
