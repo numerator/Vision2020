@@ -147,7 +147,10 @@ def reduceExposure():
 class VisionReporter(object):
     vision_bearing = ntproperty("/SmartDashboard/vision-bearing", 0.0)
 
-NetworkTables.initialize(server = '10.10.76.2')
+while True:
+    result = NetworkTables.initialize(server = '10.10.76.2')
+    if not result:
+        break
 reporter = VisionReporter()
 
 # Set up a counter, for use in logging images
