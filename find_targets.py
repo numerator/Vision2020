@@ -5,8 +5,8 @@ import os
 import sys
 import time
 import json
-from networktables import NetworkTables
-from networktables.util import ntproperty
+# from networktables import NetworkTables
+# from networktables.util import ntproperty
 
 
 def removeNoise(hsv_img, kernelSize, lower_color_range, upper_color_range):
@@ -147,11 +147,11 @@ def reduceExposure():
 class VisionReporter(object):
     vision_bearing = ntproperty("/SmartDashboard/vision-bearing", 0.0)
 
-while True:
-    result = NetworkTables.initialize(server = '10.10.76.2')
-    if not result:
-        break
-reporter = VisionReporter()
+# while True:
+#     result = NetworkTables.initialize(server = '10.10.76.2')
+#     if not result:
+#         break
+# reporter = VisionReporter()
 
 # Set up a counter, for use in logging images
 counter = 0
@@ -225,7 +225,7 @@ if __name__ == "__main__":
         time0 = time.time()
         # Read the frame from the video capture
         _, bgr_img = video_capture.read()
-        # bgr_img = cv2.imread("/Users/cbmonk/Downloads/test_image_2019_1.jpg")
+        bgr_img = cv2.imread("test_images/whiteboard_hex.png")
         # Convert the frame to HSV
         hsv_img = cv2.cvtColor(bgr_img, cv2.COLOR_BGR2HSV)
         # Enable line below if reading from precaptured image
